@@ -41,17 +41,14 @@ desired_answers = 3
 
 pipeline = [
     {
-        "$search": {
-            "knnBeta": {
-                "vector": query_vector,
+        "$vectorSearch": {
+                "index": "pdfvector",
+                "queryVector": query_vector,
                 "path": "sentenceVector",
-                "k": 15
+                "limit": desired_answers,
+                "numCandidates": 5 
             }
         }
-    },
-    {
-        "$limit": desired_answers
-    }
 ]
 
 results = result_collection.aggregate(pipeline)

@@ -22,7 +22,7 @@ Install the requirements. This implementation uses:
 * [pymongo](https://pypi.org/project/pymongo/) - the Python driver for MongoDB
 
 ```zsh
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 
@@ -32,7 +32,7 @@ Run the [extract_and_encode_pdf.py](extract_and_encode_pdf.py)
 python3 extract_and_encode_pdf.py
 ```
 ### Create Search Index
-Create a default search index on the collection:
+Create a search index (pdfvector) on the collection:
 ```json
 {
   "fields": [
@@ -77,21 +77,18 @@ This is the simple query passed to MongoDB:
 ```json
 [
     {
-        "$search": {
-            "knnBeta": {
-                "vector": <geneated query vector>,
+        "$vectorSearch": {
+                "index": "pdfvector",
+                "queryVector": query_vector,
                 "path": "sentenceVector",
-                "k": 150  // Number of neareast neighbors (nn) to return 
+                "limit": desired_answers,
+                "numCandidates": 5 
             }
         }
-    },
-    {
-        "$limit": 3      
-    }
 ]
 ```
 
-The knnBeta operator uses the [Hierarchical Navigable Small Worlds](https://arxiv.org/abs/1603.09320) algorithm to perform semantic search. You can use Atlas Search support for kNN query to search similar to a selected product, search for images, etc.
+This operator uses the [Hierarchical Navigable Small Worlds](https://arxiv.org/abs/1603.09320) algorithm to perform semantic search. You can use Atlas Search support for kNN query to search similar to a selected product, search for images, etc.
 
 
 

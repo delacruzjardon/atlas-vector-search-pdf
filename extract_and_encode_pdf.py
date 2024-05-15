@@ -23,10 +23,10 @@ result_collection.delete_many({})
 files = []
 pdfDir = "PDFs"
 for pdf in os.listdir(pdfDir):
-
-    print("Reading:", pdf)
-    reader = PdfReader(pdfDir+"/"+pdf)
-    number_of_pages = len(reader.pages)
+    if pdf.endswith(".pdf"):
+        print("Reading:", pdf)
+        reader = PdfReader(pdfDir+"/"+pdf,strict=False)
+        number_of_pages = len(reader.pages)
 
     # Load the model
     model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
