@@ -6,7 +6,6 @@ To begin, the text from the PDFs are extracted, split into sentences, and mapped
 
 An Atlas Vector Search index then allows the PDFs to be queried, finding the PDFs that are relevant to the query. 
 
-
 ![Architecture](images/architecture.png)
 
 
