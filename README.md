@@ -29,7 +29,7 @@ pip install -r requirements.txt
 
 Run the [extract_and_encode_pdf.py](extract_and_encode_pdf.py)
 ```python
-python3 extract_and_encode.py
+python3 extract_and_encode_pdf.py
 ```
 ### Create Search Index
 Create a default search index on the collection:
