@@ -36,16 +36,14 @@ python3 extract_and_encode.py
 Create a default search index on the collection:
 ```json
 {
-  "mappings": {
-    "dynamic": true,
-    "fields": {
-      "sentenceVector": {
-        "type": "knnVector",
-        "dimensions": 384,
-        "similarity": "euclidean"
-      }
+  "fields": [
+    {
+      "type": "vector",
+      "path": "sentenceVector",
+      "numDimensions": 384,
+      "similarity": "euclidean"
     }
-  }
+  ]
 }
 ```
 
